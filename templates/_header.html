@@ -1,13 +1,16 @@
 <header>
     <nav>
-        <a href="/index">Home</a> |
+        <a href="{{ url_for('index') }}">Home</a> |
         <a href="{{ url_for('get_spaces') }}">Spaces</a>
+        <a href="{{ url_for('list_bookings') }}">Bookings</a>
         {% if session.get('user_id') %}
+            | <span>Welcome, {{ session.get('username', 'User') }}!</span> |
             <form action="{{ url_for('logout') }}" method="get" style="display:inline;">
                 <button type="submit">Logout</button>
             </form>
         {% else %}
-            <a href="{{ url_for('login') }}">Login</a>
+            | <a href="{{ url_for('login') }}">Login</a>
+            | <a href="{{ url_for('register') }}">Register</a>
         {% endif %}
     </nav>
 </header>

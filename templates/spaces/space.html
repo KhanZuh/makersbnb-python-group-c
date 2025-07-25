@@ -9,9 +9,15 @@
         <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
+
+        {% include "_header.html" %}
         
-        <h1>All Spaces</h1>  
-        <a href="/spaces/new">Add a new space</a>
+        <h1>All Spaces</h1> 
+        
+        {% if session.get('user_id') %}
+            <a href="/spaces/new">Add a new space</a>
+        {% endif %}
+
         {% for space in spaces %}
             <div class="listing_{{space.id}}">
                 <h4>
