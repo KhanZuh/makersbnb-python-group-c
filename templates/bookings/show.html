@@ -1,11 +1,18 @@
 {% extends "layout.html" %}
 {% block title %}Booking {{ booking.id }}{% endblock %}
+
 {% block content %}
-<h1>Booking {{ booking.id }}</h1>
-<p>User ID: {{ booking.user_id }}</p>
-<p>Space ID: {{ booking.space_id }}</p>
-<p>Start Date: {{ booking.start_date }}</p>
-<p>End Date: {{ booking.end_date }}</p>
-<p>Status: {{ booking.status }}</p>
-<a href="/bookings">Back to all bookings</a>
+<div class="booking-detail-card">
+    <h1>Booking {{ booking.id }}</h1>
+
+    <p><strong>User ID:</strong> {{ booking.user_id }}</p>
+    <p><strong>Space ID:</strong> {{ booking.space_id }}</p>
+    <p><strong>Start Date:</strong> {{ booking.start_date }}</p>
+    <p><strong>End Date:</strong> {{ booking.end_date }}</p>
+    <p><strong>Status:</strong> {{ booking.status }}</p>
+
+    <p>
+    <a href="/bookings" class="back-link">Back to all bookings</a>
+    </p>
+</div>
 {% endblock %}

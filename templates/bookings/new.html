@@ -1,13 +1,36 @@
 {% extends "layout.html" %}
 {% block title %}New Booking{% endblock %}
+
 {% block content %}
 <h1>Make a Booking</h1>
-<form method="POST" action="/bookings/new">
-    <label>User ID:</label><input type="text" name="user_id" required><br>
-    <label>Space ID:</label><input type="text" name="space_id" required><br>
-    <label>Start Date:</label><input type="date" name="start_date" required><br>
-    <label>End Date:</label><input type="date" name="end_date" required><br>
-    <input type="submit" value="Book">
+
+<form method="POST" action="/bookings/new" class="booking-form">
+    <p>
+    <label for="user_id">User ID:</label><br>
+    <input type="text" id="user_id" name="user_id" required>
+    </p>
+
+    <p>
+    <label for="space_id">Space ID:</label><br>
+    <input type="text" id="space_id" name="space_id" required>
+    </p>
+
+    <p>
+    <label for="start_date">Start Date:</label><br>
+    <input type="date" id="start_date" name="start_date" required>
+    </p>
+
+    <p>
+    <label for="end_date">End Date:</label><br>
+    <input type="date" id="end_date" name="end_date" required>
+    </p>
+
+    <p>
+    <input type="submit" value="Book" class="btn">
+    </p>
 </form>
-<a href="/bookings">Back to bookings</a>
+
+<p>
+    <a href="/bookings" class="back-link">Back to bookings</a>
+</p>
 {% endblock %}

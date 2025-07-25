@@ -1,13 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}Bookings{% endblock %}
+
 {% block content %}
 <h1>All Bookings</h1>
-<ul>
-{% for booking in bookings %}
-    <li>
-        <a href="/bookings/{{ booking.id }}">Booking #{{ booking.id }}</a> - Status: {{ booking.status }}
+
+<ul class="booking-list">
+    {% for booking in bookings %}
+    <li class="booking-list-item">
+        <a href="/bookings/{{ booking.id }}" class="booking-link">Booking #{{ booking.id }}</a>
+        <span class="booking-status"> - Status: {{ booking.status }}</span>
     </li>
-{% endfor %}
+    {% else %}
+    <li>No bookings found.</li>
+    {% endfor %}
 </ul>
-<a href="/bookings/new">Make a new booking</a>
+
+<p>
+    <a href="/bookings/new" class="btn">Make a new booking</a>
+</p>
 {% endblock %}

@@ -269,6 +269,118 @@ a:hover {
 }
 
 
+.booking-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.booking-form input[type="text"],
+.booking-form input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.booking-form input[type="submit"].btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.booking-form input[type="submit"].btn:hover {
+    background-color: #0056b3;
+}
+
+.back-link {
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.booking-detail-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 6px;
+    max-width: 500px;
+    margin: 0 auto 30px auto;
+    background-color: #fafafa;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.booking-detail-card h1 {
+    margin-bottom: 20px;
+}
+
+.booking-detail-card p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.booking-detail-card p strong {
+    color: #333;
+}
+
+.back-link {
+    color: #555;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.booking-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+.booking-list-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.booking-list-item:last-child {
+    border-bottom: none;
+}
+
+.booking-link {
+    color:  #ff4c4c;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.booking-link:hover {
+    text-decoration: underline;
+}
+
+.booking-status {
+    color: #555;
+    font-style: italic;
+}
+
+.btn {
+    background-color: #ff4c4c;
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
 
 
 /* Responsive Styles (Mobile First) */
