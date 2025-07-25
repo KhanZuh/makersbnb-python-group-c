@@ -111,6 +111,7 @@ def register():
             
             # Log the user in automatically
             session["user_id"] = user.id 
+            session["username"] = user.name
 
             # Redirect to the user's profile page
             return redirect(f"/users/{user.id}")
@@ -140,6 +141,7 @@ def login():
             if user and user.password == form.password.data:
                 # Login successful - redirect to user profile
                 session["user_id"] = user.id
+                session["username"] = user.name
                 return redirect(f"/users/{user.id}")
             else:
                 # Login failed
@@ -173,7 +175,6 @@ def get_new_user():
 Spaces routes
 """
 @app.route('/spaces', methods=['GET'])
-@login_required
 def get_spaces():
     space_repository = SpaceRepository(get_flask_database_connection(app))
     spaces = space_repository.all()
