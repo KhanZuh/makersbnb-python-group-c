@@ -252,8 +252,18 @@ create a new availability
 # GET /availability/new
 # Returns a form to create a new availability
 @app.route('/spaces/availability/new', methods=['GET'])
+@login_required
 def get_new_availability():
-    return render_template('/spaces/availability/new.html')
+    connection = get_flask_database_connection(app)
+    repository = SpaceRepository(connection)
+
+    space_id = request.args['space_id']
+    user_id = session.get("user.id")
+    space = repository.find(int(space_id))
+
+    if user_id == space.user_id:
+        return render_template('/spaces/availability/new.html', space_id=space_id)
+    return redirect('/spaces')
 
 # POST /availability
 # Creates a new availability
@@ -263,6 +273,7 @@ def create_availability():
     repository = AvailabilityRepository(connection)
 
     space_id = int(request.form['space_id'])
+    print(space_id)
     # parse ISO 'YYYY-MM-DD' into date
     available_from = datetime.strptime(request.form['available_from'], '%Y-%m-%d').date()
     available_to   = datetime.strptime(request.form['available_to'],   '%Y-%m-%d').date()
@@ -273,6 +284,7 @@ def create_availability():
 
     availability = repository.create(availability)
     return redirect(f"/spaces/availability/{availability.id}")
+
 
 """
 Lists current bookings
@@ -325,6 +337,7 @@ def new_booking():
         return redirect('/bookings')
 
     return render_template('bookings/new.html')
+
 
 
 # These lines start the server if you run this file directly
