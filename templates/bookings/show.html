@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}Booking {{ booking.id }}{% endblock %}
+{% block content %}
+<h1>Booking {{ booking.id }}</h1>
+<p>User ID: {{ booking.user_id }}</p>
+<p>Space ID: {{ booking.space_id }}</p>
+<p>Start Date: {{ booking.start_date }}</p>
+<p>End Date: {{ booking.end_date }}</p>
+<p>Status: {{ booking.status }}</p>
+<a href="/bookings">Back to all bookings</a>
+{% endblock %}

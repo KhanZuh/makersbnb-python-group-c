@@ -12,6 +12,8 @@ from lib.space_repository import SpaceRepository
 from lib.space import Space
 from lib.availability import *
 from lib.availability_repository import *
+from lib.booking_repository import BookingRepository
+from lib.booking import Booking
 
 
 # Load environment variables from .env file 
@@ -268,7 +270,51 @@ def create_availability():
     availability = repository.create(availability)
     return redirect(f"/spaces/availability/{availability.id}")
 
-  
+@app.route('/bookings', methods=['GET'])
+def list_bookings():
+    connection = get_flask_database_connection(app)
+    repo = BookingRepository(connection)
+    bookings = repo.get_all_bookings()
+    return render_template('bookings/index.html', bookings=bookings)
+
+@app.route('/bookings/<int:booking_id>', methods=['GET'])
+def show_booking(booking_id):
+    connection = get_flask_database_connection(app)
+    repo = BookingRepository(connection)
+    booking = repo.get_booking_by_booking_id(booking_id)
+    if not booking:
+        return "Booking not found", 404
+    return render_template('bookings/show.html', booking=booking)
+
+
+@app.route('/bookings/new', methods=['GET', 'POST'])
+def new_booking():
+    connection = get_flask_database_connection(app)
+    booking_repo = BookingRepository(connection)
+    availability_repo = AvailabilityRepository(connection)
+
+    if request.method == 'POST':
+        user_id = request.form['user_id']
+        space_id = int(request.form['space_id'])
+        start_date = datetime.strptime(request.form['start_date'], "%Y-%m-%d").date()
+        end_date = datetime.strptime(request.form['end_date'], "%Y-%m-%d").date()
+        status = "pending"
+
+        # Availability check
+        availabilities = availability_repo.find(space_id)
+        available = any(a.is_date_in_range(start_date, end_date) for a in availabilities)
+
+        if not available:
+            return "Space is not available for those dates", 400
+
+        if booking_repo.is_space_booked(space_id, start_date, end_date):
+            return "Space already booked for these dates", 400
+
+        new_booking = Booking(None, user_id, space_id, start_date, end_date, status)
+        booking_repo.make_booking(new_booking)
+        return redirect('/bookings')
+
+    return render_template('bookings/new.html')
 
 
 # These lines start the server if you run this file directly

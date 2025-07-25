@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Bookings{% endblock %}
+{% block content %}
+<h1>All Bookings</h1>
+<ul>
+{% for booking in bookings %}
+    <li>
+        <a href="/bookings/{{ booking.id }}">Booking #{{ booking.id }}</a> - Status: {{ booking.status }}
+    </li>
+{% endfor %}
+</ul>
+<a href="/bookings/new">Make a new booking</a>
+{% endblock %}
