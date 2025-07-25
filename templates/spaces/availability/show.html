@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Availability</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <p class="t-space-id">Space ID: {{ availability.space_id }}</p>
-    <p class="t-available-from">Available from: {{ availability.available_from }}</p>
-    <p class="t-available-to">Available to: {{ availability.available_to }}</p>
+{% extends "layout.html" %}
 
+{% block title %}Availability{% endblock %}
 
+{% block content %}
+  <div class="availability-card">
+    <h2>Availability Details</h2>
 
-    <!-- This is a link to another page. -->
-    <!-- The browser will send `GET /books/new` when the user clicks this -->
-    <a href="/spaces/availability">Back to all availability</a>
-  </body>
-</html>
+    <p class="t-space-id"><strong>Space ID:</strong> {{ availability.space_id }}</p>
+    <p class="t-available-from"><strong>Available from:</strong> {{ availability.available_from }}</p>
+    <p class="t-available-to"><strong>Available to:</strong> {{ availability.available_to }}</p>
+
+    <p style="margin-top: 30px;">
+      <a href="/spaces/availability" class="back-link">Back to all availability</a>
+    </p>
+  </div>
+{% endblock %}

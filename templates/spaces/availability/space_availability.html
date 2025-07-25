@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Availability for Space {{ space_id }}</title>
-</head>
-<body>
+{% extends "layout.html" %}
+
+{% block title %}Availability for Space {{ space_id }}{% endblock %}
+
+{% block content %}
   <h1>Availability for Space {{ space_id }}</h1>
 
-  <ul>
-  {% for a in availabilities %}
-    <li>
-      {{ a.available_from }} to {{ a.available_to }}
-    </li>
-  {% else %}
-    <li>No availability found for this space.</li>
-  {% endfor %}
+  <ul class="availability-list">
+    {% for a in availabilities %}
+      <li>
+        {{ a.available_from }} to {{ a.available_to }}
+      </li>
+    {% else %}
+      <li>No availability found for this space.</li>
+    {% endfor %}
   </ul>
 
-  <a href="/spaces/availability/new?space_id={{ space_id }}">
-    Add availability for this space
-  </a>
-  <br>
-  <a href="/spaces">Back to all spaces</a>
-</body>
-</html>
+  <p>
+    <a href="/spaces/availability/new?space_id={{ space_id }}" class="btn">
+      Add availability for this space
+    </a>
+  </p>
+  <p>
+    <a href="/spaces" class="back-link">Back to all spaces</a>
+  </p>
+{% endblock %}

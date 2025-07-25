@@ -5,14 +5,20 @@
 {% block content %}
     <h1>All Spaces</h1>  
 
-    <p style="text-align: center; margin-bottom: 30px;">
-        <a href="/spaces/new" class="btn">Add a new space</a>
-    </p>
+    {% if session.get('user_id') %}
+        <p style="text-align: center; margin-bottom: 30px;">
+            <a href="/spaces/new" class="btn">Add a new space</a>
+        </p>
+    {% endif %}
 
     <div class="spaces-list">
         {% for space in spaces %}
             <div class="space-card listing_{{ space.id }}">
-                <h5>{{ space.name }}</h5>
+                <h5>
+                    <a href="/spaces/{{ space.id }}/availability">
+                        {{ space.name }}
+                    </a>
+                </h5>
                 <p>{{ space.description }}</p>
             </div>
         {% endfor %}

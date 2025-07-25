@@ -198,7 +198,6 @@ a {
 }
 
 a:hover {
-    color: #ff4c4c;
     text-decoration: underline;
 }
 
@@ -239,13 +238,37 @@ a:hover {
     min-height: 60px; /* to keep cards similar height */
 }
 
-/* Back link styling */
-.back-link {
-    display: block;
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 1rem;
+.availability-list {
+    list-style: none;
+    padding: 0;
 }
+
+.availability-list li {
+    margin-bottom: 10px;
+}
+
+.availability-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.availability-form input {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    background-color: #ff4c4c;;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
 
 
 /* Responsive Styles (Mobile First) */
