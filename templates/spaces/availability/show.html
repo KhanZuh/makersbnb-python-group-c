@@ -3,12 +3,21 @@
 {% block title %}Availability{% endblock %}
 
 {% block content %}
+  {% include "_header.html" %}
   <div class="availability-card">
     <h2>Availability Details</h2>
 
     <p class="t-space-id"><strong>Space ID:</strong> {{ availability.space_id }}</p>
     <p class="t-available-from"><strong>Available from:</strong> {{ availability.available_from }}</p>
     <p class="t-available-to"><strong>Available to:</strong> {{ availability.available_to }}</p>
+
+    <p style="margin-top: 30px;">
+      <a href="/spaces/availability" class="back-link">Back to all availability</a>
+    </p>
+  </div>
+{% endblock %}
+
+
 
     <p style="margin-top: 30px;">
       <a href="/spaces/availability" class="back-link">Back to all availability</a>

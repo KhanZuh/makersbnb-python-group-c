@@ -3,7 +3,8 @@
 {% block title %}Create Availability{% endblock %}
 
 {% block content %}
-  <h1>New Availability</h1>
+{% include "_header.html" %}
+    <h1>New Availability</h1>
 
   <form action="/spaces/availability" method="post" class="availability-form">
     {% if errors %}

@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}List a New Space - MakersBnB{% endblock %}
+{% include "_header.html" %}
 
 {% block content %}
 <div class="form-container">
@@ -25,6 +26,17 @@
 
     <!-- New Space Form -->
     <form method="POST" action="/spaces/new" class="form-box">
+
+
+        <link rel="stylesheet" href="/static/style.css" >
+    </head>
+    <body>
+
+
+            <h1>List of space.</h1>
+
+    <!-- Registration Form -->
+    <form method="POST" action="/spaces/new">
         {{ form.hidden_tag() }}
 
         <div class="form-field">
