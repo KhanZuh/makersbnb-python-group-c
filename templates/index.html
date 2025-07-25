@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>MakersBnB</title>
+<head>
+    <title>MakersBnB</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!--
-            Head to https://github.com/makersacademy/web-applications-in-python/blob/main/pills/loading_css_or_static_files.md
-            If you're wondering how the CSS file below is being loaded.
-        -->
-        <link rel="stylesheet" href="/static/style.css" >
-    </head>
-    <body>
+</head>
+<body>
 
-        {% include "_header.html" %}
+    {% include "_header.html" %}
 
+    <!-- Auth Links -->
+    <div class="auth-links">
+        <a href="/login">Sign In</a> | 
+        <a href="/register">Create Account</a>
+    </div>
 
-        <!-- Navigation header -->
-        <div>
-            <a href="/login">Sign In</a> | 
-            <a href="/register">Create Account</a>
+    <!-- Hero Section -->
+    <div class="main-section">
+        <h1>Welcome to MakersBnB</h1>
+        <p>Find your perfect space or list your own</p>
+        <div class="button-group">
+            <a href="/spaces" class="btn">Browse Spaces</a>
+            <a href="/register" class="btn">List Your Space</a>
         </div>
-        
-        <div style="text-align: center; padding: 20px;">
-            <h1>Welcome to MakersBnB</h1>
-            <p>Find your perfect space or list your own</p>
-            
-            <div style="margin: 30px 0;">
-                <a href="/spaces" >Browse Spaces</a>
-                <a href="/register" >List Your Space</a>
-            </div>
-        </div>
+    </div>
 
-        
-    </body>
+</body>
 </html>

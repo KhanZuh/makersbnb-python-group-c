@@ -1,41 +1,60 @@
 {% extends "layout.html" %}
 
-{% block title %}List a New Space{% endblock %}
+{% block title %}List a New Space - MakersBnB{% endblock %}
 
 {% block content %}
-    <h1>List of space.</h1>
+<div class="form-container">
+    <h1>List a New Space</h1>
 
-    <!-- Registration Form -->
-    <form method="POST" action="/spaces/new">
+    <!-- Server-side error -->
+    {% if error %}
+        <p class="error-message">{{ error }}</p>
+    {% endif %}
+
+    <!-- Validation errors -->
+    {% if form.errors %}
+        <p class="error-message">Please fix these errors:</p>
+        <ul class="error-list">
+            {% for field, errors in form.errors.items() %}
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- New Space Form -->
+    <form method="POST" action="/spaces/new" class="form-box">
         {{ form.hidden_tag() }}
-        
-        <p>
+
+        <div class="form-field">
             {{ form.name.label }}
-            {{ form.name }}
-        </p>
-        
-        <p>
+            {{ form.name(class="input-field") }}
+        </div>
+
+        <div class="form-field">
             {{ form.description.label }}
-            {{ form.description }}
-        </p>
-        
-        <p>
+            {{ form.description(class="input-field", rows="4") }}
+        </div>
+
+        <div class="form-field">
             {{ form.price_per_night.label }}
-            {{ form.price_per_night }}
-        </p>
-        
-        <p>
+            {{ form.price_per_night(class="input-field") }}
+        </div>
+
+        <div class="form-field">
             {{ form.user_id.label }}
-            {{ form.user_id }}
-        </p>
-        
-        <p>
-            {{ form.submit }}
-        </p>
+            {{ form.user_id(class="input-field") }}
+        </div>
+
+        <div class="form-field">
+            {{ form.submit(class="btn") }}
+        </div>
     </form>
 
-    <p>
+    <p class="form-footer">
         <a href="/spaces">View all Spaces</a> | 
         <a href="/index">Back to homepage</a>
     </p>
+</div>
 {% endblock %}

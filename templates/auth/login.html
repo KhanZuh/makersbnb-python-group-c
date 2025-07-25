@@ -1,15 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MakersBnB</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
+<div class="form-container">
     <h1>Sign In</h1>
 
-    <!-- Show any server errors -->
+    <!-- Server error -->
     {% if error %}
-        <p style="color: red;">{{ error }}</p>
+        <p class="error-message">{{ error }}</p>
     {% endif %}
-    
-    <!-- Show form validation errors -->
+
+    <!-- Validation errors -->
     {% if form.errors %}
-        <p style="color: red;">Please fix these errors:</p>
-        <ul>
+        <p class="error-message">Please fix these errors:</p>
+        <ul class="error-list">
             {% for field, errors in form.errors.items() %}
                 {% for error in errors %}
                     <li>{{ error }}</li>
@@ -19,28 +28,31 @@
     {% endif %}
 
     <!-- Login Form -->
-    <form method="POST" action="/login">
+    <form method="POST" action="/login" class="form-box">
         {{ form.hidden_tag() }}
         
-        <p>
+        <div class="form-field">
             {{ form.email.label }}
-            {{ form.email }}
-        </p>
+            {{ form.email(class="input-field") }}
+        </div>
         
-        <p>
+        <div class="form-field">
             {{ form.password.label }}
-            {{ form.password }}
-        </p>
+            {{ form.password(class="input-field") }}
+        </div>
         
-        <p>
-            {{ form.submit }}
-        </p>
+        <div class="form-field">
+            {{ form.submit(class="btn") }}
+        </div>
     </form>
-    
-    <p>
+
+    <p class="form-footer">
         Don't have an account? <a href="/register">Create one here</a>
     </p>
-    
-    <p>
+
+    <p class="form-footer">
         <a href="/index">Back to homepage</a>
     </p>
+</div>
+
+</body>
