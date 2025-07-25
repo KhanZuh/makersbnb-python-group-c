@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register - MakersBnB</title>
-</head>
-<body>
+{% extends "layout.html" %}
+
+{% block title %}Register - MakersBnB{% endblock %}
+
+{% block content %}
     <h1>Create Account</h1>
     
     <!-- Show any server errors -->
@@ -52,6 +50,7 @@
             {{ form.submit }}
         </p>
     </form>
+    
     <p>
         Already have an account? <a href="/login">Sign in here</a>
     </p>
@@ -59,5 +58,4 @@
     <p>
         <a href="/index">Back to homepage</a>
     </p>
-</body>
-</html>
+{% endblock %}
