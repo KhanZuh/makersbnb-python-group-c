@@ -182,6 +182,7 @@ def get_spaces():
     return render_template("spaces/space.html", spaces=spaces)
 
 @app.route('/spaces/new', methods=['GET', 'POST'])
+@login_required
 def get_new_spaces():
     form = SpaceForm()
     
@@ -271,6 +272,7 @@ def create_availability():
     return redirect(f"/spaces/availability/{availability.id}")
 
 @app.route('/bookings', methods=['GET'])
+@login_required
 def list_bookings():
     connection = get_flask_database_connection(app)
     repo = BookingRepository(connection)
@@ -278,6 +280,7 @@ def list_bookings():
     return render_template('bookings/index.html', bookings=bookings)
 
 @app.route('/bookings/<int:booking_id>', methods=['GET'])
+@login_required
 def show_booking(booking_id):
     connection = get_flask_database_connection(app)
     repo = BookingRepository(connection)
@@ -288,6 +291,7 @@ def show_booking(booking_id):
 
 
 @app.route('/bookings/new', methods=['GET', 'POST'])
+@login_required
 def new_booking():
     connection = get_flask_database_connection(app)
     booking_repo = BookingRepository(connection)
