@@ -271,6 +271,9 @@ def create_availability():
     availability = repository.create(availability)
     return redirect(f"/spaces/availability/{availability.id}")
 
+"""
+Lists current bookings
+"""
 @app.route('/bookings', methods=['GET'])
 @login_required
 def list_bookings():
