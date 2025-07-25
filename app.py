@@ -124,7 +124,7 @@ def register():
     # If GET request or form validation failed, show the form
     return render_template('auth/register.html', form=form)
 
-  
+
 """
 User Login if existing
 """
