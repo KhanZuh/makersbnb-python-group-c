@@ -10,18 +10,30 @@ from psycopg.rows import dict_row
 # That's why we have provided it!
 class DatabaseConnection:
     # VVV CHANGE BOTH OF THESE VVV
-    DEV_DATABASE_NAME = "makers_bnb"
+    DEV_DATABASE_NAME = os.environ.get('DB_NAME', 'makersbnb_db')
     TEST_DATABASE_NAME = "makers_bnb_test"
 
     def __init__(self, test_mode=False):
         self.test_mode = test_mode
+    
+    def _database_name(self):
+        return os.environ.get('DB_NAME', 'makersbnb_db')
 
     # This method connects to PostgreSQL using the psycopg library. We connect
     # to localhost and select the database name given in argument.
     def connect(self):
         try:
+            db_host = os.environ.get('DB_HOST', 'database')  # Docker service name
+            db_port = os.environ.get('DB_PORT', '5432')
+            db_user = os.environ.get('DB_USER', 'postgres')
+            db_password = os.environ.get('DB_PASSWORD', '')
+            db_name = self._database_name()
+            
+            # Build connection string for containerized database
+            connection_string = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+
             self.connection = psycopg.connect(
-                f"postgresql://localhost/{self._database_name()}",
+                connection_string,
                 row_factory=dict_row)
         except psycopg.OperationalError:
             raise Exception(f"Couldn't connect to the database {self._database_name()}! " \

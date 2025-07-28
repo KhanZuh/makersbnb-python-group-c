@@ -4,7 +4,6 @@ from functools import wraps
 from datetime import datetime
 
 from lib.database_connection import get_flask_database_connection
-from dotenv import load_dotenv
 from lib.user import *
 from lib.user_repository import *
 from lib.forms import *
@@ -14,10 +13,6 @@ from lib.availability import *
 from lib.availability_repository import *
 from lib.booking_repository import BookingRepository
 from lib.booking import Booking
-
-
-# Load environment variables from .env file 
-load_dotenv()
 
 
 # Create a new Flask app
@@ -344,4 +339,4 @@ def new_booking():
 # They also start the server configured to use the test database
 # if started in test mode.
 if __name__ == '__main__':
-    app.run(debug=True, port=int(os.environ.get('PORT', 5001)))
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5001)))

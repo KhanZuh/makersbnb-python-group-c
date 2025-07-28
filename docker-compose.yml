@@ -1,0 +1,30 @@
+services:
+  database:
+    image: postgres:17 
+    env_file:
+      - .env  
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d 
+    ports:
+      - "5432:5432"  
+    networks:
+      - app-network
+
+  app:
+    build: .
+    env_file:
+      - .env  # Docker Compose reads .env and injects as environment variables
+    depends_on:
+      - database
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
